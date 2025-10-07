@@ -17,7 +17,11 @@
     <ul>
       <% tempStorage.forEach(todo => { %>
       <li>
-        <%= todo.item %>
+        <form action="/edit" method="post">
+          <input type="hidden" name="id" value="<%= todo.id %>" />
+          <input type="text" name="item" value="<%= todo.item %>" />
+          <button type="submit">Edit</button>
+        </form>
         <form action="/delete" method="post">
           <input type="hidden" name="id" value="<%= todo.id %>" />
           <button type="submit">Delete</button>

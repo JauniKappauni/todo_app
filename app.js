@@ -33,6 +33,14 @@ app.post("/delete", (req, res) => {
   });
 });
 
+app.post("/edit", (req, res) => {
+  const id = req.body.id;
+  const item = req.body.item;
+  db.run("UPDATE todos SET item = ? WHERE id = ?", [item, id], (err) => {
+    res.redirect("/");
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
