@@ -14,8 +14,16 @@
     </form>
 
     <h2>ToDo List:</h2>
-    <% tempStorage.forEach(todo => { %>
-    <p><%= todo %></p>
-    <% }); %>
+    <ul>
+      <% tempStorage.forEach(todo => { %>
+      <li>
+        <%= todo.item %>
+        <form action="/delete" method="post">
+          <input type="hidden" name="id" value="<%= todo.id %>" />
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
   </body>
 </html>
