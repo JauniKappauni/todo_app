@@ -16,24 +16,24 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   db.all("SELECT id, item FROM todos", [], (err, rows) => {
-    res.render("index", { title: "Home", tempStorage: rows });
+    res.render("todos", { title: "Home", tempStorage: rows });
   });
 });
 
-app.post("/submit", (req, res) => {
+app.post("/create-todo", (req, res) => {
   const todo = req.body.data;
   db.run("INSERT INTO todos (item) VALUES (?)", [todo]);
   res.redirect("/");
 });
 
-app.post("/delete", (req, res) => {
+app.post("/delete-todo", (req, res) => {
   const id = req.body.id;
   db.run("DELETE FROM todos WHERE id = ?", [id], (err) => {
     res.redirect("/");
   });
 });
 
-app.post("/edit", (req, res) => {
+app.post("/edit-todo", (req, res) => {
   const id = req.body.id;
   const item = req.body.item;
   db.run("UPDATE todos SET item = ? WHERE id = ?", [item, id], (err) => {
