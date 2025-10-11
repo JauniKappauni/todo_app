@@ -7,10 +7,10 @@
   </head>
   <body>
     <h1><%= title %></h1>
-
-    <form action="/create-todo" method="post">
-      <input type="text" name="data" placeholder="todo" />
-      <button type="submit">Submit</button>
+    <a href="/" style="text-decoration: none">Home</a>
+    <form action="/list/<%= listId %>/create-todo" method="post">
+      <input type="text" name="data" placeholder="Todo item" />
+      <button type="submit">Create ToDo</button>
     </form>
 
     <h2>ToDo List:</h2>
@@ -22,7 +22,7 @@
           <input type="text" name="item" value="<%= todo.item %>" />
           <button type="submit">Edit</button>
         </form>
-        <form action="/delete-todo" method="post">
+        <form action="/list/<%= listId %>/delete-todo" method="post">
           <input type="hidden" name="id" value="<%= todo.id %>" />
           <button type="submit">Delete</button>
         </form>
